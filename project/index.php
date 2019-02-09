@@ -46,7 +46,7 @@ if (isset($argv[1])) {
         /**
          * get data as html table for outputting
          */
-        $table = $outputData->getTable();
+        $table = $outputData->getHTMLTable();
 
         $fileName = parse_url($url)['host'] . '_' . date('d.m.y') . ".html";
 

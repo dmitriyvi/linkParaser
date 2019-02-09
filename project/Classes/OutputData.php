@@ -28,7 +28,7 @@ class OutputData
      *
      * @return string
      */
-    public function getTable()
+    public function getHTMLTable()
     {
         $table = "<table border='1'>";
 
