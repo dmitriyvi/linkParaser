@@ -66,38 +66,43 @@ class RecursiveClass
                 $this->htmlParser->setParseUrl($link);
 
                 /**
-                 * beginning html parsing
+                 * checking if url is available
                  */
-                $this->htmlParser->startHtmlParsing();
+                if ($htmlParser->checkUrl()) {
+                    /**
+                     * beginning html parsing
+                     */
+                    $this->htmlParser->startHtmlParsing();
 
-                /**
-                 * get img tags array
-                 */
-                $imgsArr = $this->htmlParser->getImgsArr();
+                    /**
+                     * get img tags array
+                     */
+                    $imgsArr = $this->htmlParser->getImgsArr();
 
-                /**
-                 * counting img tags from parsing url
-                 */
-                $countImgs = count($imgsArr);
+                    /**
+                     * counting img tags from parsing url
+                     */
+                    $countImgs = count($imgsArr);
 
-                /**
-                 * get page loading time from parsing url
-                 */
-                $pageLoadingTime = $this->htmlParser->getPageLoadingTime();
+                    /**
+                     * get page loading time from parsing url
+                     */
+                    $pageLoadingTime = $this->htmlParser->getPageLoadingTime();
 
-                /**
-                 * get all links from parsing url
-                 */
-                $this->linksArr = $this->htmlParser->getAllLinks();
+                    /**
+                     * get all links from parsing url
+                     */
+                    $this->linksArr = $this->htmlParser->getAllLinks();
 
-                $this->outputDataArr[$link] = [
-                    'url'       => $link,
-                    'countImgs' => $countImgs,
-                    'depth'     => $this->depth,
-                    'time'      => $pageLoadingTime
-                ];
+                    $this->outputDataArr[$link] = [
+                        'url'       => $link,
+                        'countImgs' => $countImgs,
+                        'depth'     => $this->depth,
+                        'time'      => $pageLoadingTime
+                    ];
 
-                $new = true;
+                    $new = true;
+                }
             }
         }
 
