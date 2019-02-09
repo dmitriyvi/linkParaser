@@ -4,6 +4,7 @@ namespace Classes;
 
 /**
  * Class OutputData
+ *
  * @package Classes
  */
 class OutputData
@@ -23,6 +24,8 @@ class OutputData
     }
 
     /**
+     * create html table for output data
+     *
      * @return string
      */
     public function getTable()
@@ -51,6 +54,8 @@ class OutputData
     }
 
     /**
+     * save output data to file
+     *
      * @param string $fileName
      * @param string $content
      */
@@ -61,4 +66,21 @@ class OutputData
         fclose($myfile);
     }
 
+    public function sortingByImgCount(): void
+    {
+        usort($this->outputData, ['Classes\OutputData', 'sorting']);
+    }
+
+    /**
+     * @param $a
+     * @param $b
+     * @return int
+     */
+    protected function sorting($a, $b): int
+    {
+        if ($a['countImgs'] == $b['countImgs']) {
+            return 0;
+        }
+        return ($a['countImgs'] < $b['countImgs']) ? -1 : 1;
+    }
 }

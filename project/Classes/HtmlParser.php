@@ -36,10 +36,13 @@ class HtmlParser
     }
 
     /**
-     *
+     * beginning html parsing by $parseUrl
      */
     public function startHtmlParsing(): void
     {
+        /**
+         * begin for counting execution time
+         */
         $executionStartTime = microtime(true);
 
         $ch = curl_init($this->parseUrl);
@@ -48,10 +51,15 @@ class HtmlParser
         $this->content = curl_exec($ch);
         curl_close($ch);
 
+        /**
+         * set execution time
+         */
         $this->pageLoadingTime = $this->getExecutionTime($executionStartTime);
     }
 
     /**
+     * checking available url
+     *
      * @return bool
      */
     public function checkUrl(): bool
@@ -72,6 +80,8 @@ class HtmlParser
     }
 
     /**
+     * get html content after parsing
+     *
      * @return string
      */
     public function getHtmlContent(): string
@@ -80,6 +90,8 @@ class HtmlParser
     }
 
     /**
+     * get page loading time when it parsing
+     *
      * @return string
      */
     public function getPageLoadingTime(): string
@@ -88,6 +100,8 @@ class HtmlParser
     }
 
     /**
+     * set url for parsing
+     *
      * @param string $parseUrl
      */
     public function setParseUrl(string $parseUrl): void
@@ -96,6 +110,8 @@ class HtmlParser
     }
 
     /**
+     * get url for parsing
+     *
      * @return string
      */
     public function getParseUrl(): string
@@ -104,6 +120,8 @@ class HtmlParser
     }
 
     /**
+     * get founded img tags from parsed url content as array
+     *
      * @return array
      */
     public function getImgsArr(): array
@@ -119,6 +137,8 @@ class HtmlParser
     }
 
     /**
+     * get links from parsed url content as array
+     *
      * @return array
      */
     public function getAllLinks(): array
@@ -127,7 +147,6 @@ class HtmlParser
 
         if (!empty($this->content)) {
             preg_match_all('#<a href="(' . $this->rootUrl . '.*?)"#', $this->content, $matches);
-//            preg_match_all('#<a href="(http://robotstxt.org.ru/.*?)"#', $this->content, $matches);
 
             $links = isset($matches[1]) ? $matches[1] : [];
         }
