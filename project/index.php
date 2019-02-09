@@ -58,7 +58,7 @@ if (isset($argv[1])) {
         throw new Exception('Sorry! Page not available!');
     }
 } else {
-    throw new Exception('Please set url in first argument!');
+    throw new Exception('Please set url in first argument! For example: http://example.com/');
 }
 
 function __autoload($class)
