@@ -46,14 +46,14 @@ if (isset($argv[1])) {
         /**
          * get data as html table for outputting
          */
-        $table = $outputData->getHTMLTable();
+        $tableData = $outputData->getHTMLTable();
 
         $fileName = parse_url($url)['host'] . '_' . date('d.m.y') . ".html";
 
         /**
          * save to file data
          */
-        $outputData->saveToFile($fileName, $table);
+        $outputData->saveToFile($fileName, $tableData);
 
         if (file_exists($fileName)) {
             echo 'File created successfully!' . PHP_EOL;
