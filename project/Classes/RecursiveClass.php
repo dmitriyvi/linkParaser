@@ -68,7 +68,7 @@ class RecursiveClass
                 /**
                  * checking if url is available
                  */
-                if ($this->htmlParser->checkUrl()) {
+                if ($this->htmlParser->checkUrl($link)) {
                     /**
                      * beginning html parsing
                      */

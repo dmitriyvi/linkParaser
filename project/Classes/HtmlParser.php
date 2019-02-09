@@ -58,13 +58,21 @@ class HtmlParser
     }
 
     /**
-     * checking available url
+     * check whether the url is available
+     * default check the $rootUrl
      *
+     * @param bool $url
      * @return bool
      */
-    public function checkUrl(): bool
+    public function checkUrl($url = false): bool
     {
-        $handle = curl_init($this->rootUrl);
+        $checkUrl = $this->rootUrl;
+
+        if ($url) {
+            $checkUrl = $url;
+        }
+
+        $handle = curl_init($checkUrl);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
 
         $response = curl_exec($handle);
@@ -146,7 +154,7 @@ class HtmlParser
         $links = [];
 
         if (!empty($this->content)) {
-            preg_match_all('#<a href="(' . $this->rootUrl . '.*?)"#', $this->content, $matches);
+            preg_match_all('#href="(' . $this->rootUrl . '.*?)"#', $this->content, $matches);
 
             $links = isset($matches[1]) ? $matches[1] : [];
         }
