@@ -54,6 +54,10 @@ if (isset($argv[1])) {
          * save to file data
          */
         $outputData->saveToFile($fileName, $table);
+
+        if (file_exists($fileName)) {
+            echo 'File created successfully!' . PHP_EOL;
+        }
     } else {
         throw new Exception('Sorry! Page not available!');
     }
